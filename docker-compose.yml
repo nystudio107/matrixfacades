@@ -21,7 +21,6 @@ services:
       dockerfile: ./Dockerfile
     depends_on:
       - "mysql"
-      - "postgres"
       - "redis"
     env_file:
       *env
