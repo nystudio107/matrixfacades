@@ -1,0 +1,120 @@
+{# Global variables available in all Twig blocks
+ #
+ # @var string id the normalized id of the Matrix field
+ # @var string name handle of the Matrix field
+ # @var \craft\elements\MatrixBlock[] blocks the MatrixBlock elements in the Matrix field
+ # @var bool static whether the field is static or editable
+ # @var \craft\base\ElementInterface element the parent element that contains the Matrix block
+ #
+ # The namespace will be set appropriately for the field
+#}
+
+{# Set the columns for our custom table #}
+{% set cols = {
+    flavorPicker: {
+        type: 'flavorPicker',
+        heading: 'Scoops'|t('site-module') ~ " (#{ blocks|length })",
+        class: 'leftalign',
+    },
+    flavorCalories: {
+        type: 'text',
+        heading: 'Calories'|t('site-module'),
+        class: 'leftalign',
+    },
+    flavorPrice: {
+        type: 'text',
+        heading: 'Price'|t('site-module'),
+        class: 'leftalign',
+    },
+    scoopNuts: {
+        type: 'checkbox',
+        heading: 'Nuts'|t('site-module'),
+    },
+    orderNotes: {
+        type: 'editabletext',
+        heading: 'Notes'|t('site-module'),
+    },
+} %}
+
+{# Set up the elementType and ElementSources #}
+{% set elementType = 'craft\\elements\\Entry' %}
+{% set elementSources = craft.app.getElementIndexes().getSources(elementType, 'modal') %}
+{% set elementSources = elementSources|filter(v => v.criteria.sectionId is defined and v.criteria.sectionId == 7) %}
+{% set elementSources = elementSources|map(v => { label: v.label, value: v.key }) %}
+{% set newBlock = 'NEWBLOCK' %}
+{# Set the rows from the passed in Matric blocks #}
+{% set rows = [] %}
+{% for block in blocks %}
+    {% set flavor = block.flavor.one() %}
+    {% set newBlockName = newBlock ~ loop.index %}
+    {% set row = {
+        flavorPicker: {
+            value: {
+                flavor: flavor,
+                blockId: block.id ?? newBlockName,
+                blockType: block.type,
+                elementType: elementType,
+                elementSources: elementSources|first,
+            },
+            hasErrors: block.hasErrors('flavor'),
+        },
+        flavorCalories: {
+            value: flavor.flavorCalories ?? '-',
+        },
+        flavorPrice: {
+            value: flavor.flavorPrice ?? '-',
+        },
+        scoopNuts: {
+            value: {
+                id: 'nuts',
+                checked: block.nuts.value == 'nuts',
+                blockId: block.id ?? newBlockName,
+            }
+        },
+        orderNotes: {
+            value: {
+                id: 'notes',
+                text: block.notes ?? '',
+                blockId: block.id ?? newBlockName,
+            }
+        },
+    } %}
+    {% set rows = rows|merge([row]) %}
+{% endfor %}
+
+{# Default values that are used for newly added rows #}
+{% set defaultValues = {
+    flavorPicker: {
+        value: {
+            flavor: null,
+            blockId: newBlock,
+            blockType: 'default',
+            elementType: elementType,
+            elementSources: elementSources|first,
+        },
+    },
+    flavorCalories: {
+        value: '-',
+    },
+    flavorPrice: {
+        value: '-',
+    },
+    scoopNuts: {
+        value: {
+            id: 'nuts',
+            checked: false,
+            blockId: newBlock,
+        }
+    },
+    orderNotes: {
+        value: {
+            id: 'notes',
+            text: '',
+            blockId: newBlock,
+        }
+    },
+} %}
+
+{# Render the Matrix Facade's input html #}
+{% block input %}
+{% endblock input %}

@@ -1,0 +1,13 @@
+{% import '_includes/forms.html' as forms %}
+
+{{ forms.autosuggestField({
+    label: "Matrix Facade input template path"|t('app'),
+    instructions: "The template that will render the Matrix Facade field input HTML for forms"|t('app'),
+    id: 'inputTemplatePath',
+    name: 'inputTemplatePath',
+    suggestions: craft.cp.getCpTemplateSuggestions(),
+    limit: 10,
+    suggestEnvVars: false,
+    value: matrixField.inputTemplatePath,
+    errors: matrixField.getErrors('inputTemplatePath')
+}) }}

@@ -1,0 +1,99 @@
+{# Global variables available in all Twig blocks
+ #
+ # @var string id the normalized id of the Matrix field
+ # @var string name handle of the Matrix field
+ # @var \craft\elements\MatrixBlock[] blocks the MatrixBlock elements in the Matrix field
+ # @var bool static whether the field is static or editable
+ # @var \craft\base\ElementInterface element the parent element that contains the Matrix block
+ #
+ # The namespace will be set appropriately for the field
+#}
+{% extends 'site-module/_components/matrixfacades/scoops/input-variables' %}
+
+{# Render the Matrix Facade's input html #}
+{% block input %}
+
+    {# Embed the Craft editableTable with our overrides #}
+    {% embed '_includes/forms/editableTable' with {
+        id: id,
+        name: name,
+        cols: cols,
+        rows: rows,
+        defaultValues: defaultValues,
+        static: static,
+        initJs: false,
+        addRowLabel: 'Add a Scoop'|t('site-module'),
+    } %}
+        {# Override the tablecell block to handle rendering that ourselves #}
+        {% block tablecell %}
+            {% include 'site-module/_components/matrixfacades/scoops/tablecell' with {
+                name: name,
+                static: static,
+                col: col,
+                value: value,
+            } %}
+        {% endblock tablecell %}
+    {% endembed %}
+
+    {# Template used as a factory for newly added rows #}
+    {% set templateId = "#{id}-row-template" %}
+    {% set movable = false %}
+    <template id="{{ templateId }}">
+        {% for colId,col in cols %}
+            <td>
+                {% include 'site-module/_components/matrixfacades/scoops/tablecell' with {
+                    name: name,
+                    static: static,
+                    col: col,
+                    value: defaultValues[colId].value,
+                } %}
+            </td>
+        {% endfor %}
+        {% if not static %}
+            <td class="thin action">
+                <a class="move icon" title="{{ 'Reorder'|t('app') }}" aria-label="{{ 'Reorder'|t('app') }}"></a>
+            </td>
+            <td class="thin action">
+                <a class="delete icon" title="{{ 'Delete'|t('app') }}" aria-label="{{ 'Delete'|t('app') }}"></a>
+            </td>
+        {% endif %}
+    </template>
+
+    {# Initialize the JavaScript for the table #}
+    {% set templateId = templateId|namespaceInputId %}
+    {% set jsId = id|namespaceInputId|e('js') %}
+    {% set jsName = name|namespaceInputName|e('js') %}
+    {% set jsCols = cols|json_encode %}
+    {% set defaultValues = defaultValues ?? null %}
+    {% js %}
+        window.flavorIncrement = 1;
+        new Craft.EditableTable("{{ jsId }}", "{{ jsName }}", {{ jsCols|raw }}, {
+        defaultValues: {{ defaultValues ? defaultValues|json_encode|raw : '{}' }},
+        onAddRow: function($tr) {
+            var template = $('#{{ templateId }}').html().trim();
+            var id = 'new' + window.flavorIncrement++;
+            template = template.replaceAll('NEWBLOCK', id);
+            $tr.html(template);
+            new Craft.BaseElementSelectInput({
+                id: `fields-scoops-blocks-${id}-fields-flavor`,
+                name: `fields[scoops][blocks][${id}][fields][flavor]`,
+                elementType: 'craft\\elements\\Entry',
+                sources: {{ elementSources|first|json_encode|raw }},
+                criteria: null,
+                allowSelfRelations: false,
+                sourceElementId: null,
+                disabledElementIds: null,
+                viewMode: 'list',
+                single: false,
+                limit: 1,
+                showSiteMenu: false,
+                modalStorageKey: null,
+                fieldId: `fields-scoops-blocks-${id}-fields-flavor-field`,
+                sortable: true,
+                prevalidate: false,
+                modalSettings: {},
+                });
+            },
+        });
+    {% endjs %}
+{% endblock input %}

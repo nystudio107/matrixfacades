@@ -1,0 +1,14 @@
+tabs:
+  -
+    elements:
+      -
+        fieldUid: 858b290d-45ae-4da8-8e51-2c03caefeee3 # Disable Matrix Facades
+        instructions: null
+        label: null
+        required: false
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+    name: 'User Settings'
+    sortOrder: 1

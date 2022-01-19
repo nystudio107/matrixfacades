@@ -1,0 +1,64 @@
+{# Variables passed in:
+ #
+ # @var string name the namespaced name of the field being rendered
+ # @var boolean static whether this is a static or editable table
+ # @var array col the column that the tablecell is in
+ # @var mixed value the value of the table cell being rendered
+ #
+ # Also any parent variables from the parent editableTable Craft include will be present
+#}
+{% import '_includes/forms.html' as forms %}
+
+{%- switch col.type -%}
+{%- case 'flavorPicker' -%}
+    {{ hiddenInput("#{name}[sortOrder][]", value.blockId) }}
+    {% namespace "#{name}[blocks][#{value.blockId}]" %}
+        {{ hiddenInput('type', value.blockType) }}
+        {{ hiddenInput('enabled', 1) }}
+    {% endnamespace %}
+    {% set elementSelectConfig = {
+        id: 'flavor',
+        name: 'flavor',
+        fieldClass: 'last',
+        elements: [],
+        elementType: value.elementType,
+        selectionLabel: 'Select Scoop'|t('site-module'),
+        sources: value.elementSources,
+        limit: 1,
+    } %}
+    {% namespace "#{name}[blocks][#{value.blockId}][fields]" %}
+        {% if value.flavor %}
+            {% set elementSelectConfig = elementSelectConfig | merge({
+                elements: [craft.entries().id(value.flavor.id).one()],
+            }) %}
+            {% set flavorImage = value.flavor.flavorImage.one() ?? null %}
+            {% if flavorImage %}
+                <img src="{{ flavorImage.url }}" width="64" height="auto"/>
+            {% endif %}
+        {% endif %}
+        <div style="margin-top: 8px; margin-bottom: 8px; align-content: center;">
+            {{ forms.elementSelectfield(elementSelectConfig) }}
+        </div>
+    {% endnamespace %}
+{%- case 'text' -%}
+    {{ value }}
+{%- case 'checkbox' -%}
+    {% namespace "#{name}[blocks][#{value.blockId}][fields]" %}
+        {{ forms.checkbox({
+            name: value.id,
+            value: value.id,
+            checked: value.checked,
+            disabled: static,
+        }) }}
+    {% endnamespace %}
+{%- case 'editabletext' -%}
+    {% namespace "#{name}[blocks][#{value.blockId}][fields]" %}
+        {{ forms.text({
+            name: value.id,
+            value: value.text,
+            disabled: static,
+        }) }}
+    {% endnamespace %}
+{%- default -%}
+{%- endswitch -%}
+

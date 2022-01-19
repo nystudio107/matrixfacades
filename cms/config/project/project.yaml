@@ -1,0 +1,34 @@
+dateModified: 1642615729
+email:
+  fromEmail: andrew@nystudio107.com
+  fromName: Craft
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    1aeaf5aa-fe37-42b5-aef9-f4556b92c43a: User # User
+    1f2ba12a-f04e-47d9-af2b-3e876c5adbce: Orders # Orders
+    2b2ed478-8e77-4c39-a69a-56ad864557d1: 'Flavor Calories' # Flavor Calories
+    3d7dba4f-8e70-4965-acec-4e70f830a016: 'Flavor Price' # Flavor Price
+    5c642d7e-b16b-4836-9575-668d75d242e5: Site # Site
+    7a591e66-18df-490d-92b5-3fd3a3986f09: default # default
+    8f804a45-ad1d-4a71-b0b4-6df2040dc205: Nuts # Nuts
+    071aeb2b-e8eb-4bcf-825c-dd016745f107: Flavor # Flavor
+    86e92ff9-5119-4b99-b222-f3279dcc7818: Flavors # Flavors
+    88ffed5d-fece-4914-9e1a-a275577840d3: Default # Default
+    858b290d-45ae-4da8-8e51-2c03caefeee3: 'Disable Matrix Facades' # Disable Matrix Facades
+    6359fe58-db81-4ee6-94eb-e9f4e3c61da6: Notes # Notes
+    92425d88-9e0a-4213-b474-f553f37261c2: Orders # Orders
+    682126f6-e053-4b1d-b707-82879cb43392: 'Flavor Image' # Flavor Image
+    10571998-751e-449a-98c5-d48adf32034b: Flavors # Flavors
+    c6fb33da-e3f0-4f50-a4c5-4cce12415e80: Scoops # Scoops
+    d2e0ba28-01c7-4060-8087-0c12e978341b: Default # Default
+    dd87a305-fb8e-4bc0-965b-8afadc876934: Syrup # Syrup
+    e7500fc4-6a5e-4656-8947-27c47c0c9dd8: Whip # Whip
+    f89601e9-4ba9-4a48-9e99-350aa9914912: default # default
+system:
+  edition: solo
+  live: true
+  name: matrixfacades
+  retryDuration: 60
+  schemaVersion: 3.7.8
+  timeZone: America/New_York
