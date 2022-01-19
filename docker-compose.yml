@@ -28,9 +28,6 @@ services:
       - "9000"
     init: true
     volumes: &php-volumes
-      # Change the path below to map to your local plugin repositories
-      - /Users/andrew/webdev/craft:/Users/andrew/webdev/craft
-      - /Users/andrew/webdev/contrib:/Users/andrew/webdev/contrib
       - cpresources:/var/www/project/cms/web/cpresources:delegated
       - storage:/var/www/project/cms/storage:delegated
       - ./cms:/var/www/project/cms:cached
