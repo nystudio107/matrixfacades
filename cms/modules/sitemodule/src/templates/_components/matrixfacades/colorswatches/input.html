@@ -1,0 +1,76 @@
+{# Global variables available in all Twig blocks
+ #
+ # @var string id the normalized id of the Matrix field
+ # @var string name handle of the Matrix field
+ # @var \craft\elements\MatrixBlock[] blocks the MatrixBlock elements in the Matrix field
+ # @var bool static whether the field is static or editable
+ # @var \craft\base\ElementInterface element the parent element that contains the Matrix block
+ #
+ # The namespace will be set appropriately for the field
+#}
+
+<style>
+    .swatch-background {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        background-color: #e4edf6;
+        position: relative;
+        box-sizing: border-box;
+        display: flex;
+    }
+    .swatch-background-selected {
+        background-color: #cdd8e4;
+        border: 1px solid #adb8c4;
+    }
+    .swatch-inner {
+        pointer-events: none;
+        flex: 1;
+        height: 3rem;
+    }
+</style>
+
+{% set containerId = "#{name}-container" %}
+<div id="{{ containerId }}" class="field width-100">
+    {% for block in blocks %}
+        {% set swatchClass = "swatch-background" %}
+        {% if block.selected  %}
+            {% set swatchClass = swatchClass ~ " swatch-background-selected" %}
+        {% endif %}
+        {{ hiddenInput("#{name}[sortOrder][]", block.id) }}
+        {% namespace "#{name}[blocks][#{block.id}]" %}
+            {{ hiddenInput('type', block.type) }}
+            {{ hiddenInput('enabled', 1) }}
+        {% endnamespace %}
+        <div class="{{ swatchClass }}">
+            {% namespace "#{name}[blocks][#{block.id}][fields]" %}
+                {{ hiddenInput('selected', block.selected) }}
+            {% endnamespace %}
+            <div class="swatch-inner" style="background-color: {{ block.primaryColor }}"></div>
+            <div class="swatch-inner" style="background-color: {{ block.accentColor }}"></div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+  // Add an event listener to each color swatch
+  const elements = document.getElementsByClassName("swatch-background");
+  for (const element of elements) {
+    element.addEventListener('click', (e) => {
+      // Get all the swatches
+      const container = document.querySelector("#fields-{{ containerId }}");
+      const swatches = container.querySelectorAll('.swatch-background');
+      // Remove the `swatch-background-selected` class and set the input value to 0
+      for (const swatch of swatches) {
+        swatch.classList.remove("swatch-background-selected");
+        const input = swatch.querySelector("input:first-of-type");
+        input.value = 0;
+      }
+      // Add the `swatch-background-selected` to the clicked swatch and set the input value to 1
+      const swatch = e.target;
+      swatch.classList.add("swatch-background-selected");
+      const input = swatch.querySelector("input:first-of-type");
+      input.value = false;
+    });
+  }
+</script>
