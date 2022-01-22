@@ -1,11 +1,11 @@
-field: c6fb33da-e3f0-4f50-a4c5-4cce12415e80 # Scoops
+field: ade97714-e4c4-4c73-9322-2c6b398cef04 # Colors Swatches
 fieldLayouts:
-  7ae7f9a6-a9e1-4ba4-84f7-23006bebf1ca:
+  3e2f89e1-55db-41e9-8815-5a9a167a7940:
     tabs:
       -
         elements:
           -
-            fieldUid: 071aeb2b-e8eb-4bcf-825c-dd016745f107 # Flavor
+            fieldUid: 1f716763-7f9e-4ffd-9f8c-2c0e7ccf15f7 # Selected
             instructions: null
             label: null
             required: false
@@ -14,7 +14,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 8f804a45-ad1d-4a71-b0b4-6df2040dc205 # Nuts
+            fieldUid: f652db8c-edc2-4a66-8241-2fb0787110ee # Primary Color
             instructions: null
             label: null
             required: false
@@ -23,7 +23,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 6359fe58-db81-4ee6-94eb-e9f4e3c61da6 # Notes
+            fieldUid: 4828c563-32cf-4021-afeb-1d5e38f31daf # Accent Color
             instructions: null
             label: null
             required: false
@@ -34,13 +34,13 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  8f804a45-ad1d-4a71-b0b4-6df2040dc205: # Nuts
+  1f716763-7f9e-4ffd-9f8c-2c0e7ccf15f7: # Selected
     columnSuffix: null
     contentColumnType: boolean
     fieldGroup: null
-    handle: nuts
+    handle: selected
     instructions: ''
-    name: Nuts
+    name: Selected
     searchable: false
     settings:
       default: false
@@ -49,49 +49,32 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
-  071aeb2b-e8eb-4bcf-825c-dd016745f107: # Flavor
+  4828c563-32cf-4021-afeb-1d5e38f31daf: # Accent Color
     columnSuffix: null
-    contentColumnType: string
+    contentColumnType: string(7)
     fieldGroup: null
-    handle: flavor
+    handle: accentColor
     instructions: ''
-    name: Flavor
+    name: 'Accent Color'
     searchable: false
     settings:
-      allowSelfRelations: false
-      limit: '1'
-      localizeRelations: false
-      selectionLabel: ''
-      showSiteMenu: true
-      source: null
-      sources:
-        - 'section:10571998-751e-449a-98c5-d48adf32034b' # Flavors
-      targetSiteId: null
-      validateRelatedElements: false
-      viewMode: null
-    translationKeyFormat: null
-    translationMethod: site
-    type: craft\fields\Entries
-  6359fe58-db81-4ee6-94eb-e9f4e3c61da6: # Notes
-    columnSuffix: null
-    contentColumnType: text
-    fieldGroup: null
-    handle: notes
-    instructions: ''
-    name: Notes
-    searchable: false
-    settings:
-      byteLimit: null
-      charLimit: null
-      code: ''
-      columnType: null
-      initialRows: '4'
-      multiline: ''
-      placeholder: null
-      uiMode: normal
+      defaultColor: ''
     translationKeyFormat: null
     translationMethod: none
-    type: craft\fields\PlainText
+    type: craft\fields\Color
+  f652db8c-edc2-4a66-8241-2fb0787110ee: # Primary Color
+    columnSuffix: null
+    contentColumnType: string(7)
+    fieldGroup: null
+    handle: primaryColor
+    instructions: ''
+    name: 'Primary Color'
+    searchable: false
+    settings:
+      defaultColor: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Color
 handle: default
 name: default
 sortOrder: 1
