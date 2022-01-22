@@ -42,12 +42,12 @@
     {% endnamespace %}
 {%- case 'text' -%}
     {{ value }}
-{%- case 'checkbox' -%}
+{%- case 'lightswitch' -%}
     {% namespace "#{name}[blocks][#{value.blockId}][fields]" %}
-        {{ forms.checkbox({
+        {{ forms.lightswitch({
             name: value.id,
             value: value.id,
-            checked: value.checked,
+            on: value.on,
             disabled: static,
         }) }}
     {% endnamespace %}

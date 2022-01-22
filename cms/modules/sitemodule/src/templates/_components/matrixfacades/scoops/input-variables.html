@@ -27,7 +27,7 @@
         class: 'leftalign',
     },
     scoopNuts: {
-        type: 'checkbox',
+        type: 'lightswitch',
         heading: 'Nuts'|t('site-module'),
     },
     orderNotes: {
@@ -67,7 +67,7 @@
         scoopNuts: {
             value: {
                 id: 'nuts',
-                checked: block.nuts.value == 'nuts',
+                on: block.nuts,
                 blockId: block.id ?? newBlockName,
             }
         },
@@ -102,7 +102,7 @@
     scoopNuts: {
         value: {
             id: 'nuts',
-            checked: false,
+            on: false,
             blockId: newBlock,
         }
     },

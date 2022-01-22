@@ -70,6 +70,9 @@ class MatrixFacade extends Matrix implements FacadeInterface
             ]);
     }
 
+    // Protected Methods
+    // ===================================================================================
+
     /**
      * Should we disable facades, and display regular Matrix blocks?
      *
@@ -95,9 +98,6 @@ class MatrixFacade extends Matrix implements FacadeInterface
 
         return false;
     }
-
-    // Protected Methods
-    // ===================================================================================
 
     /**
      * @inheritdoc
