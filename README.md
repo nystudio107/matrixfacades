@@ -67,9 +67,56 @@ The default login is:
 
 The project comes pre-populated with example content that demonstrates an example Matrix Façades.
 
+#### Color Swatches Matrix Façade
+
+Navigate to **Entries &rarr; Pages &rarr; Landing Page** and you'll see an example entry:
+
+![Screenshot](./docs/img/entry-swatches-matrix-facade.png)
+
+While this looks like some kind of custom UX, it's actually a Matrix Façade field which subclasses Craft Matrix Block
+fields, and returns custom HTML for the user input.
+
+Imagine you have a Page builder where the designers or admins can modify the available color schemes, and this custom UX
+is presented to the content authors who can pick from the available choices.
+
+To see behind the façade, click on the User icon in the upper-right corner of the CP, and click on the **Admin** user.
+Then click on **User Settings**:
+
+![Screenshot](./docs/img/user-disable-matrix-facades.png)
+
+Check the **Disable Matrix Façades** checkbox, and click on **Save**.
+
+Then navigate back to **Entries &rarr; Pages &rarr; Landing Page** and you'll see the example entry as it really is:
+
+![Screenshot](./docs/img/entry-swatches-matrix-field.png)
+
+...a series of Matrix blocks 🪄
+
+You can perform [Matrix Block Queries](https://craftcms.com/docs/3.x/matrix-blocks.html) on the data stored in them just
+as normal.
+
+You can even use the Matrix Criteria Behavior discussed in
+the [Searching Craft CMS Matrix Blocks](https://nystudio107.com/blog/searching-craft-cms-matrix-blocks) to find entries
+based on data stored in the Matrix Block fields.
+
+The Matrix Criteria Behavior comes bundled with this project as well, so you can do things like:
+
+```twig
+{% set orders = craft.entries
+    .section('pages')
+    .matrixCriteria('colorsSwatches', {
+        'type': 'default',
+        'selected': true
+    })
+    .all()
+%}
+```
+
+#### Scoops Matrix Façade
+
 Navigate to **Entries &rarr; Orders &rarr; Some order** and you'll see an example entry:
 
-![Screenshot](./docs/img/entry-matrix-facade.png)
+![Screenshot](./docs/img/entry-scoops-matrix-facade.png)
 
 While this looks like a table, it's actually a Matrix Façade field which subclasses Craft Matrix Block fields, and
 returns custom HTML for the user input.
@@ -86,7 +133,7 @@ Check the **Disable Matrix Façades** checkbox, and click on **Save**.
 
 Then navigate back to **Entries &rarr; Orders &rarr; Some order** and you'll see the example entry as it really is:
 
-![Screenshot](./docs/img/entry-matrix-field.png)
+![Screenshot](./docs/img/entry-scoops-matrix-field.png)
 
 ...a series of Matrix blocks 🪄
 
@@ -104,7 +151,7 @@ The Matrix Criteria Behavior comes bundled with this project as well, so you can
     .section('orders')
     .matrixCriteria('scoops', {
         'type': 'default',
-        'nuts': 'nuts'
+        'nuts': true
     })
     .all()
 %}
