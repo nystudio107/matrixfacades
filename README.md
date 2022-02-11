@@ -8,10 +8,9 @@ This is a project demonstrates how to improve authoring experience Matrix Façad
 
 ### Initial setup
 
-You'll need [Docker desktop](https://www.docker.com/products/docker-desktop) for your platform installed to run devMode
-in local development
+You'll need [Docker desktop](https://www.docker.com/products/docker-desktop) for your platform installed to run this project
 
-Ensure no other local development environments are running that might have port conflicts, then:
+To get started:
 
 1. Clone the git repo with:
 
@@ -39,7 +38,7 @@ quit PhpStorm or stop it from listening for Xdebug during the initial build.
 4. Once the site is up and running (see below), navigate to:
 
 ```
-http://localhost:8000
+http://localhost:8888
 ```
 
 The first time you do `make dev` it will be slow, because it has to build all of the Docker images.
@@ -164,7 +163,7 @@ This project uses Docker to shrink-wrap the devops it needs to run around the pr
 To make using it easier, we're using a Makefile and the built-in `make` utility to create local aliases. You can run the
 following from terminal in the project directory:
 
-- `make dev` - starts up the local dev server listening on `http://localhost:8000/`
+- `make dev` - starts up the local dev server listening on `http://localhost:8888/`
 - `make clean` - shuts down the Docker containers, removes any mounted volumes (including the database), and then
   rebuilds the containers from scratch
 - `make update` - causes the project to update to the latest Composer dependencies

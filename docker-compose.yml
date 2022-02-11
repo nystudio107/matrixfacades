@@ -10,7 +10,7 @@ services:
       - ./cms/.env
     init: true
     ports:
-      - "8000:80"
+      - "8888:80"
     volumes:
       - cpresources:/var/www/project/cms/web/cpresources:delegated
       - ./cms/web:/var/www/project/cms/web:cached
@@ -24,8 +24,6 @@ services:
       - "redis"
     env_file:
       *env
-    expose:
-      - "9000"
     init: true
     volumes: &php-volumes
       - cpresources:/var/www/project/cms/web/cpresources:delegated
@@ -46,9 +44,6 @@ services:
       - "php"
     env_file:
       *env
-    expose:
-      - "9000"
-      - "9003"
     init: true
     volumes:
       *php-volumes
@@ -79,8 +74,8 @@ services:
       MYSQL_USER: project
       MYSQL_PASSWORD: project
     init: true
-    ports:
-      - "3306:3306"
+    expose:
+      - "3306"
     volumes:
       - db-data:/var/lib/mysql
       - ./db-seed:/docker-entrypoint-initdb.d
