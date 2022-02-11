@@ -17,6 +17,8 @@ nuke:
 	rm -f cms/composer.lock
 	rm -f cms/composer.lock
 	docker-compose up --build --force-recreate
+ssh: up
+	docker exec -it ${CONTAINER} /bin/sh
 update:
 	docker-compose down
 	rm -f cms/composer.lock

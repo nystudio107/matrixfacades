@@ -1,5 +1,11 @@
 # nystudio107/matrixfacades Change Log
 
+## 1.0.2 - 2022.02.11
+
+### Changed
+
+* Minor tweaks to the config so it can run with other local dev environments still running
+
 ## 1.0.1 - 2022.01.22
 
 ### Added
