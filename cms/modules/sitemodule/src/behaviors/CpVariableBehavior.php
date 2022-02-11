@@ -1,11 +1,11 @@
 <?php
 /**
- * MYMY plugin for Craft CMS 3.x
+ * Site module for Craft CMS 3.x
  *
- * Custom plugin for extending Craft for the specific needs of the MYMY site.
+ * Custom site module
  *
- * @link      https://mein-wunschcatering.de
- * @copyright Copyright (c) 2021 MeinWunschcatering GmbH
+ * @link      https://nystudio107.com
+ * @copyright Copyright (c) 2022 nystudio107
  */
 
 namespace modules\sitemodule\behaviors;
@@ -15,11 +15,6 @@ use craft\helpers\ArrayHelper;
 
 use yii\base\Behavior;
 
-/**
- * Class CpVariableBehavior
- *
- * @package mwc\mymy\behaviors
- */
 class CpVariableBehavior extends Behavior
 {
     // Public Methods

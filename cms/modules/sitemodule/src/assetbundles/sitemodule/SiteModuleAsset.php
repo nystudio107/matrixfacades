@@ -5,7 +5,7 @@
  * An example module for Craft CMS 3 that lets you enhance your websites with a custom site module
  *
  * @link      https://nystudio107.com/
- * @copyright Copyright (c) 2018 nystudio107
+ * @copyright Copyright (c) 2022 nystudio107
  */
 
 namespace modules\sitemodule\assetbundles\sitemodule;

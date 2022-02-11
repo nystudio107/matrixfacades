@@ -5,7 +5,7 @@
  * Custom site module
  *
  * @link      https://nystudio107.com
- * @copyright Copyright (c) 2019 nystudio107
+ * @copyright Copyright (c) 2022 nystudio107
  */
 
 /**
