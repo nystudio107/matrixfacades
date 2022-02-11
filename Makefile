@@ -15,7 +15,7 @@ craft: up
 nuke:
 	docker-compose down -v
 	rm -f cms/composer.lock
-	rm -f cms/composer.lock
+	rm -rf cms/vendor/
 	docker-compose up --build --force-recreate
 ssh: up
 	docker exec -it ${CONTAINER} /bin/sh
