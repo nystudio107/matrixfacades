@@ -41,10 +41,9 @@ quit PhpStorm or stop it from listening for Xdebug during the initial build.
 http://localhost:8888
 ```
 
-The first time you do `make dev` it will be slow, because it has to build all of the Docker images.
+The first time you do `make dev` it will be slow, because it has to build all the Docker images.
 
-Subsequent `make dev` commands will be much faster, but still a little slow because we intentionally do
-a `composer install`  to keep our dependencies in sync.
+Subsequent `make dev` commands will be much faster..
 
 Wait until you see the following to indicate that the PHP container is ready:
 
