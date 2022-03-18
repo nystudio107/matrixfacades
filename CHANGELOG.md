@@ -1,5 +1,14 @@
 # nystudio107/matrixfacades Change Log
 
+## 1.0.2 - 2022.03.17
+### Changed
+
+### Added
+* Significantly increased startup times via a `composer_install.sh` script that only runs `composer install` at container startup time if `composer.lock` or `vendor/` is missing
+
+### Changed
+* Added a `sleep 60` in the `run_queue.sh` containers, so they don't run the "keepalive" script until the other containers have started
+
 ## 1.0.2 - 2022.02.11
 
 ### Changed
