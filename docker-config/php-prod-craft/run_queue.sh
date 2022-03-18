@@ -3,8 +3,9 @@
 # Run Queue shell script
 #
 # This shell script runs the Craft CMS queue via `php craft queue/listen`
-# It's wrapped in a "keep alive" infinite loop that restarts the command
-# (after a 60 second sleep) should it exit unexpectedly for any reason
+# It waits until the database container responds, then runs any pending
+# migrations / project config changes via the `craft-update` Composer script,
+# then runs the queue listener that listens for and runs pending queue jobs
 #
 # @author    nystudio107
 # @copyright Copyright (c) 2022 nystudio107
