@@ -5,7 +5,6 @@
 ### Added
 * Significantly increased startup times via a `composer_install.sh` script that only runs `composer install` at container startup time if `composer.lock` or `vendor/` is missing
 * Run migrations / project config changes via the `run_queue.sh` script, only after the db container responds
-* Run migrations / project config changes via the `run_queue.sh` script, only after the db container responds
 
 ## 1.0.2 - 2022.02.11
 
