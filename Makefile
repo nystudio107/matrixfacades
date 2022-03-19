@@ -1,11 +1,11 @@
-CONTAINER?=$(shell basename $(CURDIR))_php_1
+CONTAINER?=$(shell basename $(CURDIR))-php-1
 
-.PHONY: dev clean composer craft nuke up update update-clean
+.PHONY: dev clean composer craft nuke ssh up
 
 dev: up
 clean:
-	docker-compose down -v
-	docker-compose up --build
+	rm -f cms/composer.lock
+	rm -rf cms/vendor/
 composer: up
 	docker exec -it ${CONTAINER} composer \
 		$(filter-out $@,$(MAKECMDGOALS))
@@ -19,15 +19,6 @@ nuke:
 	docker-compose up --build --force-recreate
 ssh: up
 	docker exec -it ${CONTAINER} /bin/sh
-update:
-	docker-compose down
-	rm -f cms/composer.lock
-	docker-compose up
-update-clean:
-	docker-compose down
-	rm -f cms/composer.lock
-	rm -rf cms/vendor/
-	docker-compose up
 up:
 	if [ ! "$$(docker ps -q -f name=${CONTAINER})" ]; then \
 		cp -n cms/example.env cms/.env; \

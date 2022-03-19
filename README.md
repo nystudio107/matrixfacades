@@ -163,13 +163,12 @@ To make using it easier, we're using a Makefile and the built-in `make` utility 
 following from terminal in the project directory:
 
 - `make dev` - starts up the local dev server listening on `http://localhost:8888/`
-- `make clean` - shuts down the Docker containers, removes any mounted volumes (including the database), and then
-  rebuilds the containers from scratch
-- `make update` - causes the project to update to the latest Composer dependencies
-- `make update-clean` - completely removes `node_modules/` & `vendor/`, then causes the project to update to the latest
-  Composer dependencies
+- `make clean` - removes the `cms/composer.lock` & the entire `cms/vendor/` directory
 - `make composer xxx` - runs the `composer` command passed in, e.g. `make composer install` in the php container
 - `make craft xxx` - runs the `craft` [console command](https://craftcms.com/docs/3.x/console-commands.html) passed in,
   e.g. `make craft project-config/apply` in the php container
+- `make nuke` - restarts the project from scratch by running `make clean` (above), then shuts down the Docker containers, removes any mounted volumes (including the database), and then rebuilds the containers from scratch
+
+**Tip:** If you try a command like `make craft project-config/apply --force` you’ll see an error, because the shell thinks the `--force` flag should be applied to the `make` command. To side-step this, use the `--` (double-dash) to disable further option processing, like this: `make -- craft project-config/apply --force`
 
 Brought to you by [nystudio107](https://nystudio107.com/)
