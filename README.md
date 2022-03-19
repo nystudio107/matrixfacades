@@ -10,6 +10,8 @@ This is a project demonstrates how to improve authoring experience Matrix Façad
 
 You'll need [Docker desktop](https://www.docker.com/products/docker-desktop) for your platform installed to run this project
 
+Ensure you're using the [Docker Compose API v2](https://stackoverflow.com/questions/69464001/docker-compose-container-name-use-dash-instead-of-underscore/70295720#70295720) for the `make` commands to all work properly.
+
 To get started:
 
 1. Clone the git repo with:
