@@ -32,8 +32,6 @@ git clone https://github.com/nystudio107/matrixfacades.git
 make dev
 ```
 
-(the first build will be somewhat lengthy, ignore the warnings from `queue_1`).
-
 If it appears to hang at `Building php_xdebug`, your PhpStorm or other IDE is likely waiting for an Xdebug connection;
 quit PhpStorm or stop it from listening for Xdebug during the initial build.
 
@@ -60,6 +58,7 @@ php_1         | [01-Dec-2020 18:38:46] NOTICE: ready to handle connections
 
 The default login is:
 
+**URL:** `http://localhost:8888/admin`
 **User:** `admin` \
 **Password:** `password`
 
