@@ -1,5 +1,9 @@
 # nystudio107/matrixfacades Change Log
 
+## 1.0.5 - 2022.03.26
+### Changed
+* Updated to Craft CMS 3.7.37
+
 ## 1.0.4 - 2022.03.26
 ### Added
 * Dramatically sped up the startup time for the PHP containers by moving the permissions setting script to run asynchronously in the queue container via the `run_queue.sh` script
