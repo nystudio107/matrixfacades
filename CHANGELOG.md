@@ -1,5 +1,13 @@
 # nystudio107/matrixfacades Change Log
 
+## 1.0.6 - 2022.03.26
+### Added
+* Added more logging to indicate when a container is waiting for another service to start up, and when seeding a database is complete
+* Run `composer craft-update` after a `composer install` is done via `composer_install.sh`
+
+### Changed
+* Moved permissions setting to Docker image creation
+
 ## 1.0.5 - 2022.03.26
 ### Changed
 * Updated to Craft CMS 3.7.37
