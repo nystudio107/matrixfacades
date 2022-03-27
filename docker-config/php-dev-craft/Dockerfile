@@ -61,4 +61,8 @@ RUN mkdir -p /var/www/project/cms/storage \
 WORKDIR /var/www/project/cms
 
 # Start php-fpm
-CMD php-fpm
+CMD chown -R www-data:www-data /var/www/project/cms/storage \
+    && \
+    chown -R www-data:www-data /var/www/project/cms/web/cpresources \
+    && \
+    php-fpm
