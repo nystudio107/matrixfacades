@@ -69,10 +69,6 @@ RUN chmod a+x composer_install.sh
 # ...then start up php-fpm. The `run_queue.sh` script in the queue container
 # will take care of running any pending migrations and apply any Project Config changes,
 # as well as set permissions via an async CLI process
-CMD chown -R www-data:www-data /var/www/project/cms/storage \
-    && \
-    chown -R www-data:www-data /var/www/project/cms/web/cpresources \
-    && \
-    ./composer_install.sh \
+CMD ./composer_install.sh \
     && \
     php-fpm
