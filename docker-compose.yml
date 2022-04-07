@@ -25,6 +25,7 @@ services:
     env_file:
       *env
     init: true
+    tty: true
     volumes: &php-volumes
       - cpresources:/var/www/project/cms/web/cpresources:delegated
       - storage:/var/www/project/cms/storage:delegated
@@ -45,6 +46,7 @@ services:
     env_file:
       *env
     init: true
+    tty: true
     volumes:
       *php-volumes
   # queue - runs queue jobs via php craft queue/listen
@@ -57,6 +59,7 @@ services:
     env_file:
       *env
     init: true
+    tty: true
     volumes:
       *php-volumes
   # mysql - database
