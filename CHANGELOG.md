@@ -1,5 +1,9 @@
 # nystudio107/matrixfacades Change Log
 
+## 1.0.7 - 2022.04.22
+### Fixed
+* Ensure that the [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server/tags) image can pick from the ARM64 architecture by using `latest` tag
+
 ## 1.0.6 - 2022.03.26
 ### Added
 * Added more logging to indicate when a container is waiting for another service to start up, and when seeding a database is complete
