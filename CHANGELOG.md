@@ -1,5 +1,9 @@
 # nystudio107/matrixfacades Change Log
 
+## 1.0.10 - 2022.05.03
+### Changed
+* Determine the separator character by checking the Docker Compose API version at runtime
+
 ## 1.0.9 - 2022.05.02
 ### Changed
 * Use `su-exec` for the `craft`, `composer`, and `ssh` commands from the Makefile
