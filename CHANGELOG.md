@@ -1,5 +1,9 @@
 # nystudio107/matrixfacades Change Log
 
+## 1.0.11 - 2022.05.03
+### Changed
+* Use `docker-compose` to test the version, rather than the newer `docker compose`, to be backwards compatible
+
 ## 1.0.10 - 2022.05.03
 ### Changed
 * Determine the separator character by checking the Docker Compose API version at runtime
