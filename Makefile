@@ -1,5 +1,5 @@
-# Determine the docker compose API version to determine the separator character
-VERSION?=$(shell docker compose version)
+# Determine the docker compose API version to get the separator character
+VERSION?=$(shell docker-compose -v)
 ifneq (,$(findstring v2.,$(VERSION)))
 	SEPARATOR:=-
 else
